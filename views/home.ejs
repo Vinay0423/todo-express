@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    
+    <header>
+        <h1>Track your daily activities</h1>
+        <form action="/task" method="post">
+            <input type="text" name="name" id="" placeholder="Enter a daily activities here..">
+            <button type="submit">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </form>
+    </header>
+
+    <main>
+        <table>
+            <tr>
+                <th>Task</th>
+                <th>Actions</th>
+            </tr>
+            <% tasks.forEach(doc=>{%>
+                <tr>
+                <td class="<%= doc.isCompleted ? 'completed' : '' %>"><%= doc.name%></td>
+                <td>
+                    <div class="form-group">
+                        <form action="/task/<%=doc.id %>?_method=PUT" method="post">
+                            <input type="hidden" name="isCompleted" value="true" id="isCompleted">
+                           <button class="complete">
+                            <i class="fa-regular fa-square-check"></i>
+                           </button>
+                        </form>
+                        <form action="/task/<%=doc.id %>?_method=DELETE" method="post">
+                            <button class="delete">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            <%})%>
+        </table>
+    </main>
+
+    <footer>
+        <span>Vinay &copy; 2024 All rights reserved</span>
+    </footer>
+</body>
+</html>

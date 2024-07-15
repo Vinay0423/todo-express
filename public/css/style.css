@@ -1,0 +1,135 @@
+
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+header{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+header h1{
+    width: 80%;
+background-color: aquamarine;
+font-size: 3rem;
+text-align: center;
+height: 7vh;
+padding-top:10px ;
+}
+
+header form{
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 20%;
+}
+
+form input{
+    width: 50em;
+   font-size: 16px;
+   border-radius: 10px;
+   height: 5vh;
+   text-align: center;
+}
+
+form input:focus{
+    outline: none;
+}
+
+form button {
+    flex: 1;
+    padding: 0.75em;
+    cursor: pointer;
+    background: green;
+    border: none;
+    color: white;
+    border-radius: 0.5em;
+}
+
+form button i{
+    font-size: 1.5em;
+}
+main {
+    margin: 0 auto;
+    max-width: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+}
+
+main table,
+tr,
+th,
+td {
+   
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table {
+    width: 100%;
+}
+th,td{
+    width: 60%;
+}
+
+th {
+    height: 2.75em;
+    background-color: #ddd;
+    text-transform: uppercase;
+}
+
+td {
+    height: 2.5em;
+    text-align: center;
+}
+
+
+
+footer {
+    width: 100%;
+    height: 7.5vh;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    font-size: x-large;
+    bottom: 0;
+    color: #fff;
+}
+
+.form-group{
+    display: flex;
+    justify-content: space-around;
+}
+.form-group form button{
+    padding: 0.75em;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.5em;
+    background: transparent;
+}
+.form-group form button i{
+    font-size: 1.5em;
+}
+.form-group form .complete{
+    color: blue;
+}
+.form-group form .delete{
+    color: red;
+    
+}
+
+.completed {
+    text-decoration: line-through;
+}
