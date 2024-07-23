@@ -10,10 +10,10 @@ export const postTask = async (req, res, next) => {
     }
     try {
         let newTask = await Task.create({
+            user:req.user._id,
             name,
         })
-        // console.log(newTask)
-        res.redirect('/task')
+       
         // res.status(201).json(newTask)
     } catch (error) {
         res.status(400).json(error.message)
@@ -26,9 +26,10 @@ export const postTask = async (req, res, next) => {
 //access Public
 export const getTasks = async (req, res, next) => {
     try {
-        let tasks = await Task.find()
+        let tasks = await Task.find({user:req.user._id})
         // res.status(200).json(tasks)
         res.render("home.ejs",{title:"Home page",tasks})
+        
     } catch (error) {
         res.status(400).json(error.message)
     }
@@ -40,7 +41,7 @@ export const getTasks = async (req, res, next) => {
 export const getTask = async (req, res, next) => {
     let {id}=req.params
     try {
-        let task = await Task.findById(id)
+        let task = await Task.findById({user:req.user._id,_id:id})
         res.status(200).json(task)
     } catch (error) {
         res.status(400).json(error.message)
@@ -54,7 +55,7 @@ export const updatedTask = async (req, res, next) => {
     let { id } = req.params
     let { isCompleted } = req.body
     try {
-        let updatedTask = await Task.findByIdAndUpdate(id, { isCompleted: isCompleted }, { new: true })
+        let updatedTask = await Task.findByIdAndUpdate({user:req.user._id,_id:id}, { isCompleted: isCompleted })
         res.redirect('/task')
         // res.status(200).json(updatedTask)
     } catch (error) {
@@ -69,7 +70,7 @@ export const updatedTask = async (req, res, next) => {
 export const deleteTask = async (req, res, next) => {
     let { id } = req.params
     try {
-        await Task.findByIdAndDelete(id)
+        await Task.findByIdAndDelete({user:req.user._id,_id:id})
        res.redirect('/task')
         // res.status(200).json("Deleted a task")
     } catch (error) {
